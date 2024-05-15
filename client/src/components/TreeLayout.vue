@@ -41,7 +41,7 @@ export default defineComponent({
   },
   methods: {
     fetchData() {
-      axios.get<NodeData[]>('http://localhost:3000/api/graph')
+      axios.get<NodeData[]>('https://data-visualization-server-13kj.onrender.com/api/graph')
         .then(response => {
           this.graphData = response.data;
           this.renderGraph();
@@ -113,7 +113,7 @@ export default defineComponent({
         this.selectedNode.data.selected = true;
         this.updateNodeStyles();
 
-        axios.post("http://localhost:3000/api/select-node", {
+        axios.post("https://data-visualization-server-13kj.onrender.com/api/select-node", {
           nodeName: node.data.name,
         }).then(response => {
           console.log("Node details retrieved:", response.data);
@@ -130,7 +130,7 @@ export default defineComponent({
 
     deselectNode() {
       if (this.selectedNode) {
-        axios.post('http://localhost:3000/api/deselect-node', { nodeName: this.selectedNode.data.name })
+        axios.post('https://data-visualization-server-13kj.onrender.com/api/deselect-node', { nodeName: this.selectedNode.data.name })
           .then(() => {
             if (this.selectedNode?.data) {
               this.selectedNode.data.selected = false;
